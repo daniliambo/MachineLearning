@@ -1,4 +1,5 @@
 .idea/
 .ipynb_checkpoints/
 .DS_Store
-./
+numpy_exercises.ipynb
+pandas_and_numpy.ipynb

@@ -328,3 +328,24 @@ class KNearest:
 
     def predict(self, X: np.array) -> np.array:
         return np.argmax(self.predict_proba(X), axis=1)
+
+
+# X = np.asarray([[1, 3], [2, 1], [3, 1], [2, 6], [7, 4], [3, 7], [7, 2], [5, 4], [1, 7], [5, 1]])
+# y = np.asarray([2, 3, 0, 2, 2, 3, 0, 0, 2, 1])
+# points = np.asarray([[4, 7], [4, 2], [2, 3], [2, 1]])
+# leaf_size = 2
+# k = 3
+# knn = KNearest(n_neighbors=3, leaf_size=5)
+# knn.fit(X, y=y)
+# probas = knn.predict_proba(points)
+# print(probas)
+# ans = knn.predict(points)
+# print(ans)
+
+X, y = read_cancer_dataset('cancer.csv')
+X1 = X[24:26]  # 18
+knn = KNearest(n_neighbors=3, leaf_size=5)
+knn.fit(X, y=y)
+probas = knn.predict_proba(X1)
+ans = knn.predict(X1)
+print(probas, ans)

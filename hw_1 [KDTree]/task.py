@@ -144,9 +144,10 @@ class KDTree:
         radius = distances[-1]
         if radius > np.abs(node.median - x[node.index]) or len(neighbours) < k:
             other_neighbours, other_distances = self.nn(to_visit, x, k)
-            return self.merge(x, k, neighbours, other_neighbours, distances, other_distances)
-        else:
-            return neighbours, distances
+            merged = self.merge(x, k, neighbours, other_neighbours, distances, other_distances)
+            print(merged)
+            return merged
+        return neighbours, distances
 
     def query(self, X: np.array, k: int = 1):
         """
@@ -198,13 +199,3 @@ class KNearest:
 
     def predict(self, X: np.array) -> np.array:
         return np.argmax(self.predict_proba(X), axis=1)
-
-
-X = np.asarray([[6, 3], [7, 4], [6, 9], [2, 6], [7, 4], [3, 7], [7, 2], [5, 4], [1, 7], [5, 1]])
-point = np.asarray([[4, 0]])
-
-leaf_size = 2
-k = 2
-tree = KDTree(X, leaf_size)
-ans = tree.query(point, k)
-print(ans)
